@@ -1,0 +1,36 @@
+<h1><i class="fa fa-lightbulb"></i> Cofinement: Idées et astuces</h1>
+<p>
+  Afin de vous aider à vous occuper pendant la période de confinement, nous vous proposons la liste de ressources
+  ci-dessous.
+</p>
+<p>
+  Bien entendu, elle est loin d'être complète. Si vous avez des idées n'hésitez à nous en faire part.
+</p>
+<div class="row">
+  <div class="col-sm-12 mt-4">
+    <div id="accordion">
+      <div class="card" *ngFor="let idea of ideas">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0"
+              data-toggle="collapse"
+              [attr.data-target]="'#collapse-' + idea.id"
+              aria-expanded="true"
+              aria-controls="collapseOne" style="cursor: pointer">
+            <span [innerHTML]="idea.title"></span>
+            <i class="fa float-right fa-sort-down align-bottom" data-toggle="collapse" [attr.data-target]="'#collapse-' + idea.id" style="cursor: pointer"></i>
+          </h5>
+        </div>
+
+        <div [attr.id]="'collapse-' + idea.id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body text-justify">
+            <ul>
+              <li *ngFor="let c of idea.content">
+                <a [href]="c.link" target="_blank">{{c.title}}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+[
+  {
+    "id": 0,
+    "title": "Déplacement professionel",
+    "description": "Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés"
+  },
+  {
+    "id": 1,
+    "title": "Faire ses courses",
+    "description": "Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité3 dans des établissements dont les activités demeurent autorisées (liste sur gouvernement.fr)"
+  },
+  {
+    "id": 2,
+    "title": "Motif de santé",
+    "description": "Consultations et soins ne pouvant être assurés à distance et ne pouvant être différés ; consultations et soins des patients atteints d'une affection de longue durée"
+  },
+  {
+    "id": 3,
+    "title": "Assistance aux personnes vulnérables",
+    "description": "Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants"
+  },
+  {
+    "id": 4,
+    "title": "Déplacement bref",
+    "description": "Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des personnes, à l'exclusion de toute pratique sportive collective et de toute proximité avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie"
+  },
+  {
+    "id": 5,
+    "title": "Convocation judiciaire ou administrative",
+    "description": ""
+  },
+  {
+    "id": 6,
+    "title": "missions d’intérêt général",
+    "description": "Participation à des missions d’intérêt général sur demande de l’autorité administrative"
+  }
+]

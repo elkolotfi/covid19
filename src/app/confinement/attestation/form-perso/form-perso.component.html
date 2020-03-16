@@ -1,0 +1,96 @@
+<p>Je soussigné(e)</p>
+<form [formGroup]="persoForm">
+  <table class="table table-borderless">
+    <tbody>
+    <tr>
+      <td>Mme / M.</td>
+      <td><input name="name"
+                 formControlName="name"
+                 class="form-control"
+                 placeholder="Nom Prénom"></td>
+    </tr>
+
+    <tr>
+      <td>Né(e) le</td>
+      <td class="col-auto">
+        <div class="input-group">
+          <input [owlDateTime]="birthdayElt" [owlDateTimeTrigger]="birthdayElt"
+               formControlName="birthday" class="form-control"  placeholder="jj/mm/annee">
+          <owl-date-time [startAt]="startAt" [startView]="'multi-years'" [pickerType]="'calendar'" #birthdayElt></owl-date-time>
+          <div class="input-group-append border-dark">
+            <div class="input-group-text bg-dark border-dark trigger" style="cursor: pointer" [owlDateTimeTrigger]="birthdayElt">
+              <i class="fa fa-calendar-alt text-white"></i>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>À</td>
+      <td><input name="birthplace"
+                 formControlName="birthplace"
+                 class="form-control"
+                 placeholder="Ville de naissance"></td>
+    </tr>
+
+    <tr>
+      <td>Deumerant au</td>
+      <td><textarea name="address" formControlName="address" class="form-control"
+                    placeholder="Votre adresse de confinement"></textarea></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <p class="text-justify">
+    certifie que mon déplacement est lié au motif suivant (cocher la case) autorisé par
+    l’article 1er du décret du 16 mars 2020 portant réglementation des déplacements dans
+    le cadre de la lutte contre la propagation du virus Covid-19 :
+  </p>
+
+  <select (change)="changeReason($event)" formControlName="reason" class="form-control">
+    <option disabled value="-1">Raison de sortie</option>
+    <option *ngFor="let reason of reasons" [value]="reason.id">{{reason.title}}</option>
+  </select>
+
+  <p *ngIf="reason.length > 0" class="text-justify mt-2 p-2" style="border: dashed">{{reason}}</p>
+
+  <table class="table table-borderless mt-2">
+    <tbody>
+    <tr>
+      <td>Fait à</td>
+      <td>
+        <input name="city"
+               formControlName="city"
+               class="form-control"
+               placeholder="Ville">
+      </td>
+    </tr>
+
+    <tr>
+      <td>Le</td>
+      <td class="col-auto">
+        <div class="input-group">
+            <input [min]="today" [owlDateTime]="todayElt" [owlDateTimeTrigger]="todayElt"
+                   formControlName="today" class="form-control" [value]="today">
+            <owl-date-time #todayElt></owl-date-time>
+            <div class="input-group-append border-dark">
+              <div class="input-group-text bg-dark border-dark trigger" style="cursor: pointer" [owlDateTimeTrigger]="todayElt">
+                <i class="fa fa-calendar-alt text-white"></i>
+              </div>
+            </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>
+        <a [href]="downloadUrl" [download]="downloadName" class="btn btn-success float-right text-white" type="button">
+          <i class="fas fa-file-download"></i> Télécharger
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>

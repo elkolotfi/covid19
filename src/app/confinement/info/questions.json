@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "question": "Puis-je me déplacer en France?",
+    "answer": "A partir du 17 mars à 12h, et pour 15 jours minimum, même si vous ne présentez aucun symptôme, vous ne pouvez sortir sans un motif valable qui pourra faire l’objet d’un contrôle par les forces de l’ordre. En cas de symptômes d'une infection respiratoire ou de fièvre au-dessus de 37,5 degrés, restez à la maison, contactez votre médecin et limitez le\ncontact avec d'autres personnes autant que possible. N’appelez le 15 qu’en cas de forte fièvre ou de difficulté respiratoire"
+  },
+  {
+    "id": 2,
+    "question": "Quels sont les motifs valablespour sortirde chez soi ?",
+    "answer": "<p>En application de l’état d’urgence sanitaire, les déplacements sont interdits sauf dans les cas suivants et uniquement à condition d'être munis d'une attestation pour :</p>\n<p><ul>\n<li>Déplacements entre le domicile et le lieu d’exercice de l’activité professionnelle, lorsqu’ils sont indispensables à l’exercice d’activités ne pouvant être organisées sous forme de télétravail ou déplacements professionnels ne pouvant être différés.</li>\n<li>Déplacements pour effectuer des achats de fournitures nécessaires à l’activité professionnelle et des achats de première nécessité dans des établissements dont les activités demeurent autorisées.</li>\n<li>Consultations et soins ne pouvant être assurés à distance et ne pouvant être différés; soin des patients atteints d'une affection de longue durée.</li>\n<li>Déplacements pour motif familial impérieux, pour l’assistance aux personnes vulnérables ou la garde d’enfants.</li>\n<li>Déplacements brefs, dans la limite d'une heure quotidienne et dans un rayon maximal d'un kilomètre autour du domicile, liés soit à l'activité physique individuelle des personnes, à l'exclusion de toute pratique sportive collective et de toute proximité avec d'autres personnes, soit à la promenade avec les seules personnes regroupées dans un même domicile, soit aux besoins des animaux de compagnie.</li>\n<li>Convocation judiciaire ou administrative.</li>\n    <li>Participation à des missions d’intérêt général sur demande de l’autorité administrative</li></ul></p>"
+  },
+  {
+    "id": 3,
+    "question": "Ceux qui sont hors de leur domicile ou de leurrésidence peuvent-ils y retourner ?",
+    "answer": "Oui"
+  },
+  {
+    "id": 4,
+    "question": "Si j’habite dans une commune et travaille dans une autre commune, puis-je aller et revenir du travail ?",
+    "answer": "Oui, si vous ne pouvez travailler à\ndistance, c’est un déplacement justifié par\nune nécessitéprofessionnelle.\n"
+  },
+  {
+    "id": 5,
+    "question": "Puis-je utiliser les\nmoyensde transport\npublic ?",
+    "answer": "Oui. Tous les moyens de transports\npublic et privé fonctionnent régulièrement.\n"
+  },
+  {
+    "id": 6,
+    "question": "Est-il possible de sortir pour\nacheter des denrées\nalimentaires ?",
+    "answer": "Oui. Il n’y a aucun besoin et il n’y a aucune\nraison de faire des provisions car les\nmagasins demeurent régulièrement\napprovisionnés. Il n’y a pas de restrictions\nau transit des marchandises, qu’elles\ncouvrent les besoins fondamentaux ou pas."
+  },
+  {
+    "id": 7,
+    "question": "Est-il possible de sortir pour\nacheter autre chose que des\ndenrées alimentaires?",
+    "answer": "Oui, mais seulement en cas de nécessité,\ndonc uniquement dans les commerces dont\nl’ouverture est autorisée, pour l’achat de\nbiens liés à la satisfaction de besoins de\npremière nécessité."
+  },
+  {
+    "id": 8,
+    "question": "Puis-je aller manger chez des parents ou des amis ?",
+    "answer": "Non, car ce n’est pas un déplacement\nindispensable et que cela ne figure\npas parmi les dérogations.\n"
+  },
+  {
+    "id": 9,
+    "question": "Puis-je me rendre auprès de parents dépendants ou de proches ?",
+    "answer": "Uniquement pour vous occuper de\npersonnes vulnérables et en vous rappelant\nque les seniors sont les personnes les plus\nvulnérables et qu’il faut les protéger le plus\npossible de tout contact."
+  },
+  {
+    "id": 10,
+    "question": "Les activités physiques à l’extérieur sont-elles autorisées ?",
+    "answer": "Les sorties indispensables à l’équilibre des\nenfants, le sport et l’activité physique\nindividuels dans les espaces ouverts, sont\nautorisés à proximité du domicile, dans le\nrespect des gestes barrière et en évitant\ntout rassemblement.\n"
+  },
+  {
+    "id": 11,
+    "question": "Puis-je sortir avec\nmon chien ?",
+    "answer": "Oui, pour lui permettre de satisfaire ses\nbesoins ou pour un rendez-vous\nvétérinaire."
+  },
+  {
+    "id": 12,
+    "question": "Que se passe-t-il\nen cas de violation\ndes restrictions ?",
+    "answer": "Ces prescriptions seront contrôlées par les\nforces de l’ordre et leur violation fera l’objet\nd’une contravention dont le montant sera\nporté à 135 euros."
+  }
+]

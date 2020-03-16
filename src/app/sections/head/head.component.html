@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="font-size:15px!important;" routerLink="">
+      <img src="assets/images/logo.png" width="30" height="30" class="d-inline-block align-bottom" alt="">
+    Covid-19 France <small>(Confinement J{{confinementDays}})</small>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="statistiques"><i class="far fa-chart-bar"></i> Stats</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="infos"><i class="fas fa-question-circle"></i> Infos Covid-19</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="confinementDropdown" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+           [class.active] = "router.isActive('/confinement', false)"
+           (click)="doNothing()">
+          <i class="fas fa-home"></i> Confinement
+        </a>
+        <div class="dropdown-menu" aria-labelledby="confinementDropdown">
+          <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="confinement/informations"><i class="fas fa-info"></i> Informations Générale</a>
+          <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="confinement/attestation-sorties"><i class="far fa-file-pdf"></i> Attestation de sortie</a>
+          <a class="dropdown-item"  [routerLinkActive]="['active']" routerLink="confinement/idees-astuces"><i class="far fa-lightbulb"></i> Idées et astuces</a>
+        </div>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="about"><i class="far fa-newspaper"></i> A propos</a>
+      </li>
+    </ul>
+  </div>
+</nav>
