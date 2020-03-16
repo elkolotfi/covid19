@@ -1,0 +1,25 @@
+<h1>Covid-19: Questions fréquentes <i class="fa fa-question-circle"></i> </h1>
+<div class="row">
+  <div class="col-sm-12 mt-4">
+    <div id="accordion">
+      <div class="card" *ngFor="let e of questions">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0"
+              data-toggle="collapse"
+              [attr.data-target]="'#collapse-' + e.id"
+              aria-expanded="true"
+              aria-controls="collapseOne" style="cursor: pointer">
+            <span [innerHTML]="e.question"></span>
+            <i class="fa float-right fa-sort-down align-bottom" data-toggle="collapse" [attr.data-target]="'#collapse-' + e.id"></i>
+          </h5>
+        </div>
+
+        <div [attr.id]="'collapse-' + e.id" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+          <div class="card-body text-justify">
+            {{e.answer}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

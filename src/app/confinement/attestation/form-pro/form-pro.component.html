@@ -1,0 +1,150 @@
+<p>Je soussigné(e)</p>
+<form [formGroup]="proForm">
+  <table class="table table-borderless">
+    <tbody>
+    <tr>
+      <td>Mme / M.</td>
+      <td><input name="name"
+                 formControlName="name"
+                 class="form-control"
+                 placeholder="Nom Prénom Responsable"></td>
+    </tr>
+
+    <tr>
+      <td>Fonction</td>
+      <td><input name="position"
+                 formControlName="position"
+                 class="form-control"
+                 placeholder="e.g: Directeur d'agence"></td>
+    </tr>
+
+    </tbody>
+  </table>
+
+  <p class="text-justify">
+    certifie que les déplacements de la personne ci-après, entre son domicile et son lieu
+    d’activité professionnelle, ne peuvent être différés ou sont indispensables à l’exercice
+    d’activités ne pouvant être organisées sous forme de télétravail (au sens du 1<sup>er</sup> du 2<sup>e</sup> alinéa
+    de l’article 1er du décret du 16 mars 2020 portant règlementation des déplacements
+    dans le cadre de la lutte contre la propagation du virus Covid-19):
+  </p>
+
+  <table class="table table-borderless">
+    <tbody>
+    <tr>
+      <td style="width: 40%">Nom</td>
+      <td><input name="lastname"
+                 formControlName="lastname"
+                 class="form-control"
+                 placeholder="Nom du sortant"></td>
+    </tr>
+
+    <tr>
+      <td>Prénom</td>
+      <td><input name="firstname"
+                 formControlName="firstname"
+                 class="form-control"
+                 placeholder="Prénom du sortant"></td>
+    </tr>
+
+    <tr>
+      <td>Date de naissance</td>
+      <td class="col-auto">
+        <div class="input-group">
+          <input [owlDateTime]="birthdayElt" [owlDateTimeTrigger]="birthdayElt"
+                 formControlName="birthday" class="form-control"  placeholder="jj/mm/annee">
+          <owl-date-time [startAt]="startAt" [startView]="'multi-years'" [pickerType]="'calendar'" #birthdayElt></owl-date-time>
+          <div class="input-group-append border-dark">
+            <div class="input-group-text bg-dark border-dark trigger" style="cursor: pointer" [owlDateTimeTrigger]="birthdayElt">
+              <i class="fa fa-calendar-alt text-white"></i>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Address du domicile</td>
+      <td><textarea name="address"
+                 formControlName="address"
+                 class="form-control"
+                    placeholder="Adresse de confinement"></textarea>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Nature de l’activité professionnelle</td>
+      <td>
+        <textarea name="activity"
+                  formControlName="activity"
+                  class="form-control"
+                  placeholder="e.g: Chauffeur"></textarea>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Lieu d’exercice de l’activité professionnelle</td>
+      <td><textarea name="workplace"
+                 formControlName="workplace"
+                 class="form-control" placeholder="Adresse du lieu de travail"></textarea>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Trajet de déplacement</td>
+      <td><textarea name="path"
+                 formControlName="path"
+                 class="form-control"
+                    placeholder="e.g: Du lieu de travail vers le dépôt se trouvant au..."></textarea>
+      </td>
+    </tr>
+
+    <tr>
+      <td>Moyen de déplacement</td>
+      <td><input name="mean"
+                 formControlName="mean"
+                 class="form-control"
+                 placeholder="e.g: Voiture immatriculée XX-999-XX"></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-borderless">
+    <tbody>
+    <tr>
+      <td>Fait à</td>
+      <td>
+        <input name="city"
+               formControlName="city"
+               class="form-control"
+               placeholder="Ville">
+      </td>
+    </tr>
+
+    <tr>
+      <td>Le</td>
+      <td class="col-auto">
+        <div class="input-group">
+          <input [min]="today" [owlDateTime]="todayElt" [owlDateTimeTrigger]="todayElt"
+                 formControlName="today" class="form-control" [value]="today">
+          <owl-date-time [pickerType]="'calendar'" #todayElt></owl-date-time>
+          <div class="input-group-append border-dark">
+            <div class="input-group-text bg-dark border-dark trigger" style="cursor: pointer" [owlDateTimeTrigger]="todayElt">
+              <i class="fa fa-calendar-alt text-white"></i>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>
+        <a [href]="downloadUrl" [download]="downloadName" class="btn btn-success float-right text-white" type="button">
+          <i class="fas fa-file-download"></i> Télécharger
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</form>
