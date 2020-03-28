@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'confinement/informations', component: InfoComponent },
   { path: 'confinement/attestation-sorties', component: AttestationComponent },
   { path: 'confinement/idees-astuces', component: IdeasComponent },
-  { path: 'about', component: AboutComponent },
+  { path: 'a-propos', component: AboutComponent },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '' }
 ];

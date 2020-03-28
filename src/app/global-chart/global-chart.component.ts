@@ -20,8 +20,8 @@ export class GlobalChartComponent implements OnInit, OnDestroy {
   private franceDeaths = [];
 
   lineChartData: ChartDataSets[] = [
-      {data: this.franceCases, label: 'Cas confirmé (France)'},
-      {data: this.franceDeaths, label: 'Morts (France)'}
+      {data: this.franceCases, label: 'Cas confirmés'},
+      {data: this.franceDeaths, label: 'Morts'}
       ];
   lineChartLabels: Label[] = [];
   lineChartOptions: (ChartOptions & { annotation: any }) = {
