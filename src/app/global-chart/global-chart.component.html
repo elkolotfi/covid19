@@ -2,7 +2,7 @@
   <div class="col-sm-12">
     <div class="text-center">
       <h4>COVID-19 en France</h4>
-      <small>dernière mis à jour le: {{data.lastUpdate}}</small>
+      <small>dernière mise à jour: {{data.lastUpdate | date: 'EEEE, dd MMMM yyyy'}}</small>
     </div>
     <div class="row">
       <div class="col-md-4 mx-auto">
@@ -13,7 +13,7 @@
             <td class="stat-number text-black-50">{{data.casesNumber}}</td>
           </tr>
           <tr>
-            <td class="stat-title">Nouveaux cas</td>
+            <td class="stat-title">Nouveaux cas (J)</td>
             <td class="stat-number text-warning">+{{data.newCases}}</td>
           </tr>
           </tbody>
@@ -27,7 +27,7 @@
             <td class="stat-number">{{data.deathsNumber}}</td>
           </tr>
           <tr>
-            <td class="stat-title">Nouveaux mort</td>
+            <td class="stat-title">Nouveaux morts (J)</td>
             <td class="stat-number text-danger">+{{data.newDeaths}}</td>
           </tr>
           </tbody>
