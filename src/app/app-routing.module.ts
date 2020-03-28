@@ -6,6 +6,7 @@ import {AboutComponent} from './about/about.component';
 import {AttestationComponent} from './confinement/attestation/attestation.component';
 import {IdeasComponent} from './confinement/ideas/ideas.component';
 import {InfoComponent} from './confinement/info/info.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
   { path: 'statistiques', component: GlobalChartComponent },
@@ -14,8 +15,8 @@ const routes: Routes = [
   { path: 'confinement/attestation-sorties', component: AttestationComponent },
   { path: 'confinement/idees-astuces', component: IdeasComponent },
   { path: 'about', component: AboutComponent },
-  { path: '', redirectTo: '/statistiques', pathMatch: 'full' },
-  { path: '**', component: GlobalChartComponent }
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

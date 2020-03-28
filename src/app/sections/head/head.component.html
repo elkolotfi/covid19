@@ -9,6 +9,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
+      <li class="nav-item" routerLinkActive="">
+        <a class="nav-link" routerLink=""><i class="fa fa-home"></i> Accueil</a>
+      </li>
       <li class="nav-item" routerLinkActive="active">
         <a class="nav-link" routerLink="statistiques"><i class="far fa-chart-bar"></i> Stats</a>
       </li>
@@ -20,7 +23,7 @@
            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
            [class.active] = "router.isActive('/confinement', false)"
            (click)="doNothing()">
-          <i class="fas fa-home"></i> Confinement
+          <i class="fas fa-bed"></i> Confinement
         </a>
         <div class="dropdown-menu" aria-labelledby="confinementDropdown">
           <a class="dropdown-item" [routerLinkActive]="['active']" routerLink="confinement/informations"><i class="fas fa-info"></i> Informations Générale</a>
