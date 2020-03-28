@@ -23,6 +23,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {PdfDataModel} from '../models/attestation/pdfData.model';
 import {OWL_DATE_TIME_LOCALE, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
 
 registerLocaleData(localeFr);
 
@@ -38,7 +39,8 @@ registerLocaleData(localeFr);
     IdeasComponent,
     InfoComponent,
     FormPersoComponent,
-    FormProComponent
+    FormProComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
