@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import reasonsData from './reasons.json';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {PersoModel} from '../../../../models/attestation/perso.model';
 import {PdfDataService} from '../../../../services/pdf-data.service';
 import {PdfService} from '../../../../services/pdf.service';
@@ -34,7 +34,8 @@ export class FormPersoComponent implements OnInit {
 
     this.persoForm = this.formBuilder.group({
       name: this.pdfDataService.perso.name,
-      birthday: this.pdfDataService.perso.birthday.getFullYear() < this.today.getFullYear() ?
+      birthday: this.pdfDataService.perso.birthday instanceof Date &&
+                this.pdfDataService.perso.birthday.getFullYear() < this.today.getFullYear() ?
                       this.pdfDataService.perso.birthday : '',
       birthplace: this.pdfDataService.perso.birthplace,
       address: this.pdfDataService.perso.address,
