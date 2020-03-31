@@ -9,14 +9,24 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class PdfDataService {
-  private pdf: PdfDataModel = new PdfDataModel();
+  private pdf = new PdfDataModel();
   pdfSubject = new Subject<PdfDataModel>();
+  private PROFIL_LABEL = 'profil';
 
   private typingDelay = 700;
   private typingTimer: number;
   private doneTyping = () => this.pdfSubject.next(this.pdf);
 
-  constructor() { }
+  constructor() {
+    if (this.PROFIL_LABEL in localStorage) {
+      const perso: PersoModel = JSON.parse(localStorage.getItem(this.PROFIL_LABEL));
+      this.perso.name = perso.name;
+      this.perso.birthday = new Date(perso.birthday.toString());
+      this.perso.birthplace = perso.birthplace;
+      this.perso.address = perso.address;
+      this.perso.city = perso.city;
+    }
+  }
 
   get data(): PdfDataModel {
     return this.pdf;
@@ -37,6 +47,7 @@ export class PdfDataService {
 
   set perso(perso: PersoModel) {
     this.pdf.perso = perso;
+    localStorage.setItem(this.PROFIL_LABEL, JSON.stringify(this.pdf.perso));
     this.emitSubject();
   }
 
