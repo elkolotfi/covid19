@@ -25,8 +25,7 @@ export class PdfService {
     fetch('assets/files/' + pdfName).then(res => {
       res.arrayBuffer().then(buffer => {
         PDFDocument.load(buffer).then((pdf: PDFDocument) => {
-           const page: PDFPage = pdf.getPages()[0];
-           data.type === AttestationType.Pro ? this.drawPro(page, data) : this.drawPerso(page, data);
+           data.type === AttestationType.Pro ? this.drawPro(pdf, data) : this.drawPerso(pdf, data);
 
            pdf.saveAsBase64({ dataUri: true }).then(dataUri => {
             this.PDF = new PdfModel(this.base64ToArrayBuffer(dataUri.split(';').slice(-1)[0]
@@ -51,7 +50,9 @@ export class PdfService {
     return this.pdf;
   }
 
-  private drawPro = (page: PDFPage, data: PdfDataModel) => {
+  private drawPro = (pdf: PDFDocument, data: PdfDataModel) => {
+    const page: PDFPage = pdf.getPages()[0];
+
     page.drawText(data.pro.employerName,  {x: 156, y: 619, size: 15}); // Employer full name
     page.drawText(data.pro.employerPosition,  {x: 426, y: 619, size: 10});    // Employer position (function)
     page.drawText(data.pro.lastname,  {x: 106, y: 476, size: 15}); // Last name
@@ -70,7 +71,8 @@ export class PdfService {
     page.drawText(formatDate(data.pro.today, 'MM', 'fr_FR'), {x: 502, y: 188, size: 15});
   }
 
-  private drawPerso = (page: PDFPage, data: PdfDataModel) => {
+  private drawPerso = (pdf: PDFDocument, data: PdfDataModel) => {
+    const page: PDFPage = pdf.getPages()[0];
     const reasonPoints = [0, 49, 90.5, 126, 182, 229, 265];
 
     page.drawText(data.perso.name, { x: 134, y: 686, size: 14 });
@@ -91,6 +93,8 @@ export class PdfService {
     page.drawText(formatDate(data.perso.today, 'dd/MM/yyyy', 'fr_FR'), {x: 96, y: 201, size: 15});
     page.drawText(formatDate(data.perso.today, 'HH', 'fr_FR'), {x: 195, y: 201, size: 15});
     page.drawText(formatDate(data.perso.today, 'mm', 'fr_FR'), {x: 222, y: 201, size: 15});
+
+    const qrPage: PDFPage = pdf.addPage([page.getWidth(), page.getHeight()]);
   }
 
   private base64ToArrayBuffer = (base64): Uint8Array => {
