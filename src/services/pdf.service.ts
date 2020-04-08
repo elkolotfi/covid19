@@ -81,7 +81,6 @@ export class PdfService {
     }
     page.drawText(data.perso.birthplace, { x: 134, y: 637, size: 14 });
     page.drawText(data.perso.address, { x: 134, y: 613, size: 14 });
-    // LINE 2 page.drawText('address line 2', { x: 130, y: 544, size: 15 });
 
     if (data.perso.reason > -1) {
       const mv = reasonPoints[data.perso.reason];
