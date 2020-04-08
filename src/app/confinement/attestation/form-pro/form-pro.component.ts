@@ -16,7 +16,7 @@ export class FormProComponent implements OnInit {
   downloadUrl: SafeUrl;
   downloadName: string;
 
-  startAt = new Date('1963-01-01');
+  startAt = new Date('1984-01-01');
   today = new Date();
 
   constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer,
