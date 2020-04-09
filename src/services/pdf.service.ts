@@ -6,6 +6,7 @@ import {PdfDataModel} from '../models/attestation/pdfData.model';
 import {AttestationType} from '../models/attestation/attestationType.enum';
 import {PdfDataService} from './pdf-data.service';
 import {Injectable} from '@angular/core';
+import * as Qrious from 'qrious';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,7 @@ export class PdfService {
     fetch('assets/files/' + pdfName).then(res => {
       res.arrayBuffer().then(buffer => {
         PDFDocument.load(buffer).then((pdf: PDFDocument) => {
-           const page: PDFPage = pdf.getPages()[0];
-           data.type === AttestationType.Pro ? this.drawPro(page, data) : this.drawPerso(page, data);
+           data.type === AttestationType.Pro ? this.drawPro(pdf, data) : this.drawPerso(pdf, data);
 
            pdf.saveAsBase64({ dataUri: true }).then(dataUri => {
             this.PDF = new PdfModel(this.base64ToArrayBuffer(dataUri.split(';').slice(-1)[0]
@@ -51,7 +51,9 @@ export class PdfService {
     return this.pdf;
   }
 
-  private drawPro = (page: PDFPage, data: PdfDataModel) => {
+  private drawPro = (pdf: PDFDocument, data: PdfDataModel) => {
+    const page: PDFPage = pdf.getPages()[0];
+
     page.drawText(data.pro.employerName,  {x: 156, y: 619, size: 15}); // Employer full name
     page.drawText(data.pro.employerPosition,  {x: 426, y: 619, size: 10});    // Employer position (function)
     page.drawText(data.pro.lastname,  {x: 106, y: 476, size: 15}); // Last name
@@ -70,7 +72,8 @@ export class PdfService {
     page.drawText(formatDate(data.pro.today, 'MM', 'fr_FR'), {x: 502, y: 188, size: 15});
   }
 
-  private drawPerso = (page: PDFPage, data: PdfDataModel) => {
+  private drawPerso = (pdf: PDFDocument, data: PdfDataModel) => {
+    const page: PDFPage = pdf.getPages()[0];
     const reasonPoints = [0, 49, 90.5, 126, 182, 229, 265];
 
     page.drawText(data.perso.name, { x: 134, y: 686, size: 14 });
@@ -79,7 +82,6 @@ export class PdfService {
     }
     page.drawText(data.perso.birthplace, { x: 134, y: 637, size: 14 });
     page.drawText(data.perso.address, { x: 134, y: 613, size: 14 });
-    // LINE 2 page.drawText('address line 2', { x: 130, y: 544, size: 15 });
 
     if (data.perso.reason > -1) {
       const mv = reasonPoints[data.perso.reason];
@@ -91,6 +93,20 @@ export class PdfService {
     page.drawText(formatDate(data.perso.today, 'dd/MM/yyyy', 'fr_FR'), {x: 96, y: 201, size: 15});
     page.drawText(formatDate(data.perso.today, 'HH', 'fr_FR'), {x: 195, y: 201, size: 15});
     page.drawText(formatDate(data.perso.today, 'mm', 'fr_FR'), {x: 222, y: 201, size: 15});
+
+    const qr = new Qrious({value: data.perso.toString(), backgroundAlpha: 0, size: 120});
+    const pngImageBytes = this.base64ToArrayBuffer(qr.toDataURL().split(';').slice(-1)[0]
+                                                          .split(',').slice(-1)[0]);
+    pdf.embedPng(pngImageBytes).then(image => {
+      page.drawImage(image, {x: 410, y: 144});
+      page.drawText('Date de création:', {x: 465, y: 141, size: 8});
+      page.drawText(formatDate(new Date(), 'dd/MM/yyyy à HH\'h\'mm', 'fr_FR'), {x: 453, y: 133, size: 8});
+
+      const qrPage: PDFPage = pdf.addPage([page.getWidth(), page.getHeight()]);
+      const fact = 3;
+      qrPage.drawImage(image, {x: 30, y: 450, width: image.width * fact, height: image.height * fact});
+    });
+
   }
 
   private base64ToArrayBuffer = (base64): Uint8Array => {

@@ -20,7 +20,7 @@ export class FormPersoComponent implements OnInit {
   downloadUrl: SafeUrl;
   downloadName: string;
 
-  startAt = new Date('1963-01-01');
+  startAt = new Date('1984-01-01');
   today = new Date();
 
   constructor(private formBuilder: FormBuilder, private sanitizer: DomSanitizer,
@@ -33,7 +33,8 @@ export class FormPersoComponent implements OnInit {
     });
 
     this.persoForm = this.formBuilder.group({
-      name: this.pdfDataService.perso.name,
+      firstname: this.pdfDataService.perso.firstname,
+      lastname: this.pdfDataService.perso.lastname,
       birthday: this.pdfDataService.perso.birthday instanceof Date &&
                 this.pdfDataService.perso.birthday.getFullYear() < this.today.getFullYear() ?
                       this.pdfDataService.perso.birthday : '',
@@ -54,7 +55,7 @@ export class FormPersoComponent implements OnInit {
 
   private onChanges() {
     this.persoForm.valueChanges.subscribe(value => {
-      this.pdfDataService.perso = new PersoModel(value.name, value.birthday, value.birthplace, value.address,
+      this.pdfDataService.perso = new PersoModel(value.firstname, value.lastname, value.birthday, value.birthplace, value.address,
                                         value.reason, value.city, value.today);
     });
   }

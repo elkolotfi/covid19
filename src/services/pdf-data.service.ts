@@ -20,8 +20,9 @@ export class PdfDataService {
   constructor() {
     if (this.PROFIL_LABEL in localStorage) {
       const perso: PersoModel = JSON.parse(localStorage.getItem(this.PROFIL_LABEL));
-      this.perso.name = perso.name;
-      this.perso.birthday = new Date(perso.birthday.toString());
+      this.perso.firstname = perso.firstname;
+      this.perso.lastname = perso.lastname;
+      this.perso.birthday = isNaN(Date.parse(perso.birthday.toString())) ? perso.birthday : new Date(perso.birthday);
       this.perso.birthplace = perso.birthplace;
       this.perso.address = perso.address;
       this.perso.city = perso.city;
