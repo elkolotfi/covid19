@@ -10,9 +10,9 @@ export class PersoModel {
 
   private reasons = ['travail', 'courses', 'sante', 'famille', 'sport', 'judiciaire', 'missions'];
 
-  toString(): string {
+  toString(now: string): string {
     return [
-      'Cree le: ' + formatDate(new Date(), 'dd/MM/yyyy \'a\' HH\'h\'mm', 'fr_FR'),
+      'Cree le: ' + now,
       'Nom: ' + this.lastname,
       'Prenom: ' + this.firstname,
       'Naissance: '
