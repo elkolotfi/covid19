@@ -7,7 +7,7 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class NowService {
-  private url = 'http://worldtimeapi.org/api/timezone/Europe/Paris';
+  private url = 'https://worldtimeapi.org/api/timezone/Europe/Paris';
   private apiDate: Date;
   private formats = {
     datetime: 'dd/MM/yyyy \'a\' HH\'h\'mm',
