@@ -24,6 +24,7 @@ import {PdfDataModel} from '../models/attestation/pdfData.model';
 import {OWL_DATE_TIME_LOCALE, OwlDateTimeModule, OwlNativeDateTimeModule} from 'ng-pick-datetime';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
+import {NowService} from '../services/now.service';
 
 registerLocaleData(localeFr);
 
@@ -57,6 +58,7 @@ registerLocaleData(localeFr);
     OpenCovidService,
     PdfService,
     PdfDataModel,
+    NowService,
     {provide: LOCALE_ID, useValue: 'fr-FR' },
     {provide: OWL_DATE_TIME_LOCALE, useValue: 'fr'},
   ],

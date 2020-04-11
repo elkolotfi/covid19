@@ -1,4 +1,4 @@
-import {Subject} from 'rxjs';
+import {Subject, Subscription} from 'rxjs';
 import {PDFDocument, PDFPage} from 'pdf-lib';
 import {PdfModel} from '../models/attestation/pdf.model';
 import {formatDate} from '@angular/common';
@@ -7,15 +7,22 @@ import {AttestationType} from '../models/attestation/attestationType.enum';
 import {PdfDataService} from './pdf-data.service';
 import {Injectable} from '@angular/core';
 import * as Qrious from 'qrious';
+import {NowService} from './now.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
   private pdf: PdfModel;
+  private nowSubscription: Subscription;
+  private now: Date;
+
   pdfSubject = new Subject<PdfModel>();
 
-  constructor(private pdfDataService: PdfDataService) {
+  constructor(private pdfDataService: PdfDataService, private nowService: NowService) {
+    this.nowSubscription = nowService.nowSubject.subscribe((now: Date) => {
+      this.now = now;
+    });
   }
 
   draw() {
@@ -26,13 +33,15 @@ export class PdfService {
     fetch('assets/files/' + pdfName).then(res => {
       res.arrayBuffer().then(buffer => {
         PDFDocument.load(buffer).then((pdf: PDFDocument) => {
-           data.type === AttestationType.Pro ? this.drawPro(pdf, data) : this.drawPerso(pdf, data);
+           this.nowService.fetch().then(() => {
+                 data.type === AttestationType.Pro ? this.drawPro(pdf, data) : this.drawPerso(pdf, data);
 
-           pdf.saveAsBase64({ dataUri: true }).then(dataUri => {
-            this.PDF = new PdfModel(this.base64ToArrayBuffer(dataUri.split(';').slice(-1)[0]
-                                                                    .split(',').slice(-1)[0]),
-                                      pdfName);
-          });
+                 pdf.saveAsBase64({ dataUri: true }).then(dataUri => {
+                   this.PDF = new PdfModel(this.base64ToArrayBuffer(dataUri.split(';').slice(-1)[0]
+                       .split(',').slice(-1)[0]),
+                     pdfName);
+                 });
+           });
         });
       });
     });
@@ -94,13 +103,17 @@ export class PdfService {
     page.drawText(formatDate(data.perso.today, 'HH', 'fr_FR'), {x: 195, y: 201, size: 15});
     page.drawText(formatDate(data.perso.today, 'mm', 'fr_FR'), {x: 222, y: 201, size: 15});
 
-    const qr = new Qrious({value: data.perso.toString(), backgroundAlpha: 0, size: 120});
+    const qr = new Qrious({
+          value: data.perso.toString(this.nowService.format(this.now, 'datetime')),
+          backgroundAlpha: 0,
+          size: 120
+    });
     const pngImageBytes = this.base64ToArrayBuffer(qr.toDataURL().split(';').slice(-1)[0]
                                                           .split(',').slice(-1)[0]);
     pdf.embedPng(pngImageBytes).then(image => {
       page.drawImage(image, {x: 410, y: 144});
       page.drawText('Date de création:', {x: 465, y: 141, size: 8});
-      page.drawText(formatDate(new Date(), 'dd/MM/yyyy à HH\'h\'mm', 'fr_FR'), {x: 453, y: 133, size: 8});
+      page.drawText(this.nowService.format(this.now, 'datetimeHat'), {x: 453, y: 133, size: 8});
 
       const qrPage: PDFPage = pdf.addPage([page.getWidth(), page.getHeight()]);
       const fact = 3;
