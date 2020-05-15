@@ -24,7 +24,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-select": "^1.13.12",
     "chart.js": "^2.9.3",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng-pick-datetime": "^7.0.0",
     "ng2-charts": "^2.3.0",
     "ng2-pdfjs-viewer": "^5.0.7",
