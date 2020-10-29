@@ -35,9 +35,9 @@ export class OpenCovidService {
       // tslint:disable-next-line:max-line-length
       (responses: ChartResponseInterface[]) => {
         const franceCases = new CountryModel(1, 'France (Cas confirmé)');
-
         this.data.countries.push(franceCases);
-        response.forEach(d => {
+
+        responses.forEach(d => {
           const label = d.date.toString();
           const casesNumber = isNaN(d.casConfirmes) ? 0 : d.casConfirmes;
           if (casesNumber > 0 && d.code === 'FRA' && (d.sourceType === 'sante-publique-france' || d.sourceType === 'ministere-sante')) {
@@ -71,8 +71,9 @@ export class OpenCovidService {
           if (this.data.lastUpdate === undefined || this.data.lastUpdate < d.date) {
             this.data.lastUpdate = d.date;
           }
-          this.emitSubject();
+
         });
+        this.emitSubject();
       });
   }
 
