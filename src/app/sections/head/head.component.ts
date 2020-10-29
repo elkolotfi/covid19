@@ -12,8 +12,8 @@ export class HeadComponent implements OnInit {
   constructor(public router: Router) { }
 
   ngOnInit() {
-    const confinementBegin = moment('2020-03-17 00:00:00'); // new Date();
-    this.confinementDays = Math.abs(confinementBegin.diff(moment(), 'days')) + 1;
+    const confinementBegin = moment('2020-10-29 00:00:00'); // new Date();
+    this.confinementDays = Math.abs(confinementBegin.diff(moment(), 'days'));
   }
 
   doNothing() {
