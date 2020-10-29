@@ -19,6 +19,8 @@ export class GlobalChartComponent implements OnInit, OnDestroy {
   private franceCases = [];
   private franceDeaths = [];
 
+  loading = true;
+
   lineChartData: ChartDataSets[] = [
       {data: this.franceCases, label: 'Cas confirmés'},
       {data: this.franceDeaths, label: 'Morts'}
@@ -57,15 +59,16 @@ export class GlobalChartComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.openCovid.dataSubject.subscribe(
       (data: GlobalModel) => {
            this.data = data;
-           this.loadCharts();
+           this.loadCharts().then(() => this.loading = false);
       });
     this.openCovid.emitSubject();
   }
 
-  loadCharts() {
-    const country: CountryModel = this.data.countries.find(c => c.id === 1);
-    if (country !== undefined) {
-      country.cases.points.forEach(p => {
+  loadCharts(): Promise<boolean> {
+    return new Promise<boolean>(resolve => {
+      const country: CountryModel = this.data.countries.find(c => c.id === 1);
+      if (country !== undefined) {
+        country.cases.points.forEach(p => {
           const label = formatDate(p.label, 'dd MMM', this.locale);
           let ind = this.lineChartLabels.indexOf(label);
           if (ind === -1) {
@@ -73,17 +76,19 @@ export class GlobalChartComponent implements OnInit, OnDestroy {
             this.lineChartLabels.push(label);
           }
           this.franceCases[ind] = p.value;
-      });
-      country.deaths.points.forEach(p => {
-        const label = formatDate(p.label, 'dd MMM', this.locale);
-        let ind = this.lineChartLabels.indexOf(label);
-        if (ind === -1) {
-          ind = this.lineChartLabels.length;
-          this.lineChartLabels.push(label);
-        }
-        this.franceDeaths[ind] = p.value;
-      });
-    }
+        });
+        country.deaths.points.forEach(p => {
+          const label = formatDate(p.label, 'dd MMM', this.locale);
+          let ind = this.lineChartLabels.indexOf(label);
+          if (ind === -1) {
+            ind = this.lineChartLabels.length;
+            this.lineChartLabels.push(label);
+          }
+          this.franceDeaths[ind] = p.value;
+        });
+        resolve();
+      }
+    });
   }
 
   // events
