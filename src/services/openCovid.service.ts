@@ -5,6 +5,7 @@ import {Subject} from 'rxjs';
 import {GlobalModel} from '../models/global.model';
 import {CountryModel} from '../models/country.model';
 import {PointModel} from '../models/point.model';
+import {ChartResponseInterface} from '../interfaces/ChartResponseInterface';
 
 
 @Injectable({
@@ -32,7 +33,7 @@ export class OpenCovidService {
   fetch() {
     this.client.get(this.url).subscribe(
       // tslint:disable-next-line:max-line-length
-      (response: {date: Date, nom: string, code: string, source: {nom: string, url: string, archive: string}, sourceType: string, casConfirmes: number, deces: number}[]) => {
+      (responses: ChartResponseInterface[]) => {
         const franceCases = new CountryModel(1, 'France (Cas confirmé)');
 
         this.data.countries.push(franceCases);
